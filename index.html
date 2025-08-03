@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="search-container">
+            <button class="back-button" id="back-button" style="display: none;">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <input type="text" placeholder="Search" id="search-input">
+            <img src="https://th.bing.com/th/id/OIP.ZXRJoo_gK3TIe4926q-dPAHaHa?r=0&w=800&h=800&rs=1&pid=ImgDetMain" alt="Search Icon" class="search-icon">
+        </div>
+        <div class="header-icons">
+            <a href="#" id="nav-cart" class="cart-link">
+                <img src="https://images.icon-icons.com/1458/PNG/512/shoppingcartbutton_99694.png" alt="Cart" class="cart-icon">
+                <span>Cart</span>
+            </a>
+            <a href="#" id="nav-profile" class="profile-link">
+                <img src="https://i.pinimg.com/originals/44/a6/71/44a67140daac9f67b93315c07b8e2ae0.jpg" alt="Profile" class="profile-icon">
+                <span>Profile</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content - Art Gallery -->
+    <main id="main-content">
+        <div class="art-container">
+            <!-- Artworks will be loaded here by JavaScript -->
+        </div>
+    </main>
+
+    <!-- Artwork Detail Modal -->
+    <div id="artDetailModal" class="modal">
+        <div class="modal-content art-detail-content">
+            <span class="close">&times;</span>
+            <button class="modal-back-button" onclick="closeArtDetailModal()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <div class="art-detail-container">
+                <img src="" alt="" id="detail-art-image" class="detail-art-image">
+                <div class="art-detail-info">
+                    <h2 id="detail-art-title"></h2>
+                    <p class="artist" id="detail-art-artist"></p>
+                    <p class="year" id="detail-art-year"></p>
+                    <p class="size" id="detail-art-size"></p>
+                    <p class="price" id="detail-art-price"></p>
+                    <p class="description" id="detail-art-description"></p>
+                    <div class="art-detail-buttons">
+                        <button class="buy-now" id="detail-buy-now">Buy now</button>
+                        <button class="add-cart" id="detail-add-cart">Add cart</button>
+                        <button class="favorite-btn" id="detail-favorite-btn">
+                            <i class="far fa-heart"></i> Favorite
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <button class="modal-back-button" onclick="closeCartModal()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <h2>Your Cart</h2>
+            <div class="cart-items" id="cart-items">
+                <!-- Cart items will be loaded here -->
+            </div>
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal">Rs.0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping Fee</span>
+                    <span>Rs.350</span>
+                </div>
+                <div class="summary-row total">
+                    <span><strong>Total</strong></span>
+                    <span id="cart-total"><strong>Rs.350</strong></span>
+                </div>
+                <div class="cart-buttons">
+                    <button class="btn-bank-details" id="show-bank-details">Add Bank Details</button>
+                    <button class="btn-cod" id="cash-on-delivery">Cash on Delivery</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- Bank Details Modal -->
+    <div id="bankDetailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <button class="modal-back-button" onclick="closeBankDetailsModal()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <h2>Add Bank Details</h2>
+            <form id="bankDetailsForm">
+                <div class="form-group">
+                    <label for="bankName">Bank Name:</label>
+                    <input type="text" id="bankName" required>
+                    <br><br>
+                </div>
+                <div class="form-group">
+                    <label for="accountNumber">Account Number:</label>
+                    <input type="text" id="accountNumber" required>
+                    <br><br>
+                </div>
+                <div class="form-group">
+                    <label for="accountName">Account Name:</label>
+                    <input type="text" id="accountName" required>
+                    <br><br>
+                </div>
+                <button type="submit" class="btn-primary">Save Details</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Profile Page Modal -->
+<div id="profilePageModal" class="modal">
+    <div class="modal-content profile-page-content">
+        <span class="close">&times;</span>
+        <button class="modal-back-button" onclick="closeProfilePage()">
+            <i class="fas fa-arrow-left"></i> Back
+        </button>
+        <div class="profile-header">
+            <img src="https://i.pinimg.com/originals/44/a6/71/44a67140daac9f67b93315c07b8e2ae0.jpg" alt="Profile" class="profile-large-icon">
+            <h2>Profile</h2>
+            <div class="profile-info">
+                <h3 id="profile-page-name">Josh Smith</h3>
+                <p id="profile-page-email">joshsmith@gmail.com</p>
+            </div>
+        </div>
+        <div class="profile-actions">
+            <button class="profile-btn" id="edit-profile-page">Edit Profile</button>
+            <button class="profile-btn" id="favorite-list-page">Favorite List</button>
+            <button class="profile-btn" id="order-history-page">Order History</button>
+            <button class="profile-btn logout" id="logout-page">Log out</button>
+        </div>
+    </div>
+</div>
+
+    <!-- Notification Container -->
+    <div id="notification" class="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notification-message">Item added to cart!</span>
+    </div>
+
+    <!-- Thank You Notification -->
+    <div id="thankYouNotification" class="thank-you-notification">
+        <div class="tick-icon">✓</div>
+        <h2>Thank You!</h2>
+        <p>Your order has been placed successfully.</p>
+        <div class="order-details" id="order-details">
+            <!-- Order items will be added here -->
+        </div>
+        <button class="btn-primary" onclick="closeThankYouNotification()">Continue Shopping</button>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollButton" title="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
